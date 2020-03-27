@@ -1,0 +1,32 @@
+{
+  "executionRoleArn": "arn:aws:iam::657229654050:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+  "containerDefinitions": [
+    {
+      "name": "example-backend-container",
+      "image": "657229654050.dkr.ecr.ap-northeast-2.amazonaws.com/example_backend",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/Example-Definition",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "networkMode": "awsvpc",
+  "cpu": "1024",
+  "memory": "2048",
+  "family": "Example-Definition"
+}
